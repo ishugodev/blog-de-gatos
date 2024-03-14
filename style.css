@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+  
+  --color-white: #FFFFFF;
+  --bg-header: #065E7C;
+  --bg-footer: #387E96;
+  --input-text-bg-color: #FFFFFF33;
+  --checkbox-bg-color: #065E7C;
+}
+
+html, body, input {
+  font-family: 'Mulish', sans-serif;
+}
+
+html, body {
+  font-size: 1.6rem;
+}
+
+#app {
+  display: grid;
+}
+
+.container {
+  width: min(122rem, 92%);
+  margin: auto;
+}
+
+.wrapper {
+  margin: 0 2.4rem;
+}
+
+header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  background: var(--bg-header);
+
+  display: flex;
+
+  height: 7.2rem;
+}
+
+header .logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+header form {
+  margin: 0 2.5rem;
+  width: 100%;
+}
+
+header input {
+  font-size: 1.6rem;
+
+  background: var(--input-text-bg-color);
+  color: var(--color-white);
+  
+  border: none;
+  border-radius: .4rem;
+  
+  padding: 1.2rem 1.4rem;
+  
+  min-width: 100%;
+  height: 4rem;
+}
+
+header input::placeholder {
+  color: var(--color-white);
+}
+
+header .user {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+}
+
+main {
+  background: var(--color-white);
+}
+
+main .article {
+  margin-bottom: 3.4rem;
+}
+
+main .article img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+main .article-title {
+  margin-block: 3rem;
+}
+
+main .article h1 {
+  font-size: 2.4rem;
+  line-height: 160%;
+
+  margin-bottom: .8rem;
+}
+
+main .article .buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+main .article .good {
+  width: 4rem;
+  height: 4rem;
+
+  background-color: var(--checkbox-bg-color);
+  background-image: url(./img/good.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: none;
+  border-radius: 50%;
+}
+
+main .article .not-good {
+  width: 4rem;
+  height: 4rem;
+
+  background-color: var(--checkbox-bg-color);
+  background-image: url(./img/not-good.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  border: none;
+  border-radius: 50%;
+}
+
+main .article p {
+  line-height: 160%;
+}
+
+aside {
+  margin-bottom: 4rem;
+}
+
+aside h2 {
+  font-size: 2.4rem;
+  line-height: 160%;
+
+  margin-bottom: 3.2rem;
+}
+
+aside .aside-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+aside .aside-articles a {
+  text-decoration: none;
+  color: black;
+}
+
+aside figure {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+
+  gap: 1.6rem;
+}
+
+aside figure img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+
+  border-radius: .5rem;
+}
+
+aside figure strong {
+  font-size: 1.8rem;
+  line-height: 160%;
+}
+
+aside figure p {
+  font-size: 1.4rem;
+  line-height: 160%;
+}
+
+footer {
+  background: var(--bg-footer);
+  color: var(--color-white);
+  
+  text-align: center;
+
+  padding: 2.6rem 0;
+}
+
+header {
+  --startY: -100%;
+
+  animation: moveY .6s ease-in-out;
+}
+
+section {
+  --startY: 100%;
+
+  animation: moveY .5s ease-in-out, opacity 1s .1s backwards;
+}
+
+aside {
+  --startX: -100%;
+
+  animation: moveX .6s .5s ease-out backwards, opacity .6s .6s ease-in backwards;
+}
+
+aside a {
+  transition: .15s ease-in-out;
+}
+
+aside a:hover {
+  transform: scale(1.05);
+}
+
+@keyframes moveY {
+  0% {
+    transform: translateY(var(--startY));
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes moveX {
+  0% {
+    transform: translateX(var(--startX));
+  }
+}
+
+@media (min-width: 1000px) {
+  #app {
+    grid-template-areas: 
+    "header header"
+    "main main"
+    "footer footer";
+    grid-template-rows: max-content 1fr max-content;
+    grid-template-columns: auto;
+
+  }
+
+  header {
+    grid-area: header;
+
+    padding: 0;
+  }
+
+  main {
+    grid-area: main;
+
+    display: flex;
+    justify-content: center;
+    gap: 3.4rem;
+
+    width: min(122rem, 80%);
+    margin: auto;
+
+    padding-top: 4.4rem;
+    padding-bottom: 4rem;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+  
+  header .container {
+    padding: 0;
+  }
+  
+  .wrapper {
+    margin: 0;
+  }
+  
+  .article {
+    max-width: 80rem;
+  }
+
+  .article img {
+    border-radius: .5rem;
+  }
+
+  .article-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-block: 3rem;
+  }
+
+  aside figure {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
